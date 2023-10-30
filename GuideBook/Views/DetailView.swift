@@ -34,7 +34,7 @@ struct DetailView: View {
                     
                     
                     // Create URL instance based on URL Scheme
-                    if let url = URL(string: "maps://http://maps.apple.com/?q=\(cleanName(name: attraction.name))&sll=\(cleanCoords(latLong: attraction.latLong)))&z=10&t=s") {
+                    if let url = URL(string: "http://maps.apple.com/?q=\(cleanName(name: attraction.name) )&sll=\(cleanCoords(latLong: attraction.latLong))&z=10&t=s") {
                     
                        // Test if URL can be opened
                        if UIApplication.shared.canOpenURL(url) {
@@ -46,7 +46,6 @@ struct DetailView: View {
                            } label: {
                                
                                ZStack {
-                                   
                                    RoundedRectangle(cornerRadius: 15)
                                        .foregroundColor(.blue)
                                        .frame(height: 40)
@@ -58,11 +57,8 @@ struct DetailView: View {
                            
                        }
                    }
-                    
-                   
                 }
                 .padding(.bottom, 20)
-                
             }
             .padding(.horizontal)
         }
@@ -70,16 +66,7 @@ struct DetailView: View {
     }
   
     
-    func cleanName(name: String) -> String {
-        
-        return name.replacingOccurrences(of: " ", with: "")
-            .folding(options: .diacriticInsensitive, locale: .current)
-    }
     
-    func cleanCoords(latLong: String) -> String {
-        
-        return latLong.replacingOccurrences(of: " ", with: "")
-    }
 }
 
 struct DetailView_Previews: PreviewProvider {
